@@ -31,27 +31,27 @@
     --end
 
     --Searing Totem casting function--
-    function CastSearingTotem()
-    TargetByName("Searing Totem Teronblood", true) 
-    if not CheckInteractDistance("target",2) then
+    --function CastSearingTotem()
+    --TargetByName("Searing Totem Teronblood", true) 
+    --if not CheckInteractDistance("target",2) then
         CastSpellByName("Searing Totem") 
-    else 
-        TargetNearestEnemy() 
-    end
-    end
+    --else 
+        --TargetNearestEnemy() 
+    --end
+    --end
 
-    function MagmaTotemCooldown()
-    TargetByName("Magma Totem", true)
-    if Ttwist == nil or (GetTime()-Ttwist>20) then 
-        Ttwist=GetTime() 
-        CastSpellByName("Magma Totem")
-    elseif not CheckInteractDistance("target",2) then
-        Ttwist=GetTime() 
-        CastSpellByName("Magma Totem")
-    else
-        TargetNearestEnemy()
-    end
-    end
+    --function MagmaTotemCooldown()
+    --TargetByName("Magma Totem", true)
+    --if Ttwist == nil or (GetTime()-Ttwist>20) then 
+        --Ttwist=GetTime() 
+        --CastSpellByName("Magma Totem")
+    --elseif not CheckInteractDistance("target",2) then
+        --Ttwist=GetTime() 
+        --CastSpellByName("Magma Totem")
+    --else
+        --TargetNearestEnemy()
+    --end
+    --end
 
     --function SearingTotemCooldown()
     --i = nil
