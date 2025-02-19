@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: TeronAPI
+## Notes: A set of custom APIs for World of Warcraft Vanilla, which can be called via macro(s).
+## Author: Teron
+## SavedVariablesPerAccount: TeronAPI_Config
+
+TeronAPI.lua
