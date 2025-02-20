@@ -1,14 +1,17 @@
 --General custom APIs
     --Auto attack - Version 1
     function StartAutoAttack()
+        local isAttacking = false
         for i=1,120 do 
             if IsCurrentAction(i) then 
-                return 
-            elseif (not PlayerFrame.inCombat) then
-                AttackTarget()              
+                isAttacking = true
+                break
             end
         end
-        CastSpellByName("Attack")
+        
+        if not isAttacking then
+            CastSpellByName("Attack")
+        end
     end
 --Shaman custom APIs
     --Magma Totem casting function--
