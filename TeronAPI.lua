@@ -1,5 +1,6 @@
 --General custom APIs
     --Auto attack - Version 1
+    --doesn't correctly trigger the attack; need to fix
     function StartAutoAttack()
         TargetNearestEnemy();
         local isAttacking = false
@@ -205,7 +206,18 @@
         end
     end
 
-    --API for warrior Thunder Clap cast (also switches stances)
+    --API for warrior Sunder Armor cast (also switches stances)
+    function WarriorSunderArmorCast()
+        local _,_,isActive,_ = GetShapeshiftFormInfo(2);
+        if isActive then 
+            CastSpellByName("Sunder Armor");
+        else 
+            CastSpellByName("Defensive Stance");
+        end
+    end
+
+    --API for warrior Sunder Armor (with 5 stacks rule) cast (also switches stances)
+    --doesn't correctly display the ability in-game; need to fix
     function WarriorFiveSunderRule()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2)
         if isActive then 
@@ -221,6 +233,16 @@
             if not c or c < 5 then 
                 CastSpellByName("Sunder Armor");
             end
+        else 
+            CastSpellByName("Defensive Stance");
+        end
+    end
+
+    --API for warrior Rend cast (also switches stances)
+    function WarriorRendCast()
+        local _,_,isActive,_ = GetShapeshiftFormInfo(2);
+        if isActive then 
+            CastSpellByName("Rend");
         else 
             CastSpellByName("Defensive Stance");
         end
