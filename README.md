@@ -5,7 +5,7 @@ To use the following custom APIs, all your have to do, is to put "/run *name of 
 List of available functions:
 
   **General custom APIs:**
-  1. **StartAutoAttack()** -> a pretty reliable auto-attack API, which uses a double checking method to ensure that you will always get to attack your target without the need for extra addons
+  1. Added a custom function that works similarly to how */startattack* used to work in Classic WoW and SoD. Simply put "/startattack" in your macro and you're all set!
 
   **Warrior custom APIs:**
   1. **WarriorRangePull()** -> depending on the type of weapon equiped, shoots with the respective ability *(shoot bow, shoot gun, shoot crossbow, throw)*; decreases time to swap abilities on the action bar
@@ -16,4 +16,6 @@ List of available functions:
   6. **WarriorMockingBlowCast()** -> casts Mocking Blow, but first makes sure your're in the correct stance *(does the stance dancing without too much script in your macro)*
   7. **WarriorTauntCast()** -> casts Taunt, but first makes sure your're in the correct stance *(does the stance dancing without too much script in your macro)*
   8. **WarriorThunderClapCast()** -> casts Thunder Clap, but first makes sure your're in the correct stance *(does the stance dancing without too much script in your macro)*
-  9. **WarriorFiveSunderRule()** -> allows for the use of Sunder Armor if there's not 5 sunders already on the target, additionally puts you in the correct stance for Sunder Armor *(Defensive Stance)*
+  9. **WarriorSunderArmorCast()** -> casts Sunder Armor, but first makes sure your're in the correct stance *(does the stance dancing without too much script in your macro)*
+  10. **WarriorFiveSunderRule()** -> allows for the use of Sunder Armor if there's not 5 sunders already on the target, additionally puts you in the correct stance for Sunder Armor *(Defensive Stance)*
+  11. **WarriorRendCast()** -> casts Rend, but first makes sure your're in the correct stance *(does the stance dancing without too much script in your macro)*
