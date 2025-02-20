@@ -23,11 +23,12 @@
     f:RegisterEvent'PLAYER_LEAVE_COMBAT'
     f:SetScript('OnEvent', function()
         attacking = event == 'PLAYER_ENTER_COMBAT'
+        target_change = event == 'PLAYER_TARGET_CHANGED'
     end)
-
+    
     SLASH_ATTACK1 = '/startattack'
     function SlashCmdList.ATTACK(command)
-        if not attacking then
+        if not attacking or target_change then
             TargetNearestEnemy();
             CastSpellByName'Attack'
         end
