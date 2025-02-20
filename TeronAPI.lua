@@ -34,7 +34,7 @@
     --function CastSearingTotem()
     --TargetByName("Searing Totem Teronblood", true) 
     --if not CheckInteractDistance("target",2) then
-        CastSpellByName("Searing Totem") 
+        --CastSpellByName("Searing Totem") 
     --else 
         --TargetNearestEnemy() 
     --end
@@ -71,18 +71,18 @@
 --Warrior custom APIs
     --API for warrior range pull spell
     function WarriorRangePull()
-        local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)")
-        local _,_,_,_,_,p=GetItemInfo(i)
-        local t={}
+        local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
+        local _,_,_,_,_,p=GetItemInfo(i);
+        local t={};
         t.Bows="Bow"
         t.Guns="Gun"
         t.Crossbows="Crossbow"
         t.Thrown="Throw"
 
         if CheckInteractDistance("target", 3) and (not PlayerFrame.inCombat) then
-            AttackTarget() 
+            AttackTarget();
         else
-            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1"))) 
+            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
         end
         
     end
