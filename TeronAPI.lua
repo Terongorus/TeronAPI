@@ -129,16 +129,15 @@
         t, n, bas = g(1);
         t, n, ber = g(3);
         if UnitAffectingCombat("player") then 
-            if ber then 
-                c("Intercept")
-            else 
+            if not ber then 
                 c("Berserker Stance")
+            else 
+                c("Intercept")
             end 
-        elseif bas then 
-            c("Charge")
-        else 
+        elseif not bas then 
             c("Battle Stance")
-
+        else 
+            c("Charge")
         end         
     end
 
