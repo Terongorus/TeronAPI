@@ -1,6 +1,6 @@
 --General custom APIs
     --Auto attack - Version 1
-    function StartAutoAttack_V1()
+    function StartAutoAttack()
         for i=1,120 do 
             if IsCurrentAction(i) then 
                 return 
@@ -88,7 +88,7 @@
     end
 
     --API for warrior Charge (in combat) and Intercept (out of combat)
-    function WarriorMobilityCast()
+    function WarriorChargeInterceptCast()
         local g = GetShapeshiftFormInfo;
         local c = CastSpellByName;
         t, n, bas = g(1);
