@@ -159,60 +159,61 @@
     --API for warrior Berserker Rage cast (also switches stances)
     function WarriorBerserkerRageCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(3);
-        if isActive then 
-            CastSpellByName("Berserker Rage");
-        else 
+        if not isActive then 
             CastSpellByName("Berserker Stance");
+        else 
+            CastSpellByName("Berserker Rage");
         end
     end
 
     --API for warrior Disarm cast (also switches stances)
     function WarriorDisarmCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2);
-        if isActive then 
-            CastSpellByName("Disarm");
-        else 
+        if not isActive then 
             CastSpellByName("Defensive Stance");
+        else 
+            CastSpellByName("Disarm");
         end
     end
 
     --API for warrior Mocking Blow cast (also switches stances)
     function WarriorMockingBlowCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(1);
-        if isActive then 
-            CastSpellByName("Mocking Blow");
-        else 
+        if not isActive then 
             CastSpellByName("Battle Stance");
+        else 
+            CastSpellByName("Mocking Blow");
         end
     end
 
     --API for warrior Taunt cast (also switches stances)
     function WarriorTauntCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2);
-        if isActive then 
-            CastSpellByName("Taunt");
-        else 
+        if not isActive then 
             CastSpellByName("Defensive Stance");
+        else 
+            CastSpellByName("Taunt");
         end
     end
 
     --API for warrior Thunder Clap cast (also switches stances)
     function WarriorThunderClapCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2);
-        if isActive then 
-            CastSpellByName("Thunder Clap");
-        else 
+        if not isActive then 
             CastSpellByName("Defensive Stance");
+            
+        else 
+            CastSpellByName("Thunder Clap");
         end
     end
 
     --API for warrior Sunder Armor cast (also switches stances)
     function WarriorSunderArmorCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2);
-        if isActive then 
-            CastSpellByName("Sunder Armor");
-        else 
+        if not isActive then 
             CastSpellByName("Defensive Stance");
+        else 
+            CastSpellByName("Sunder Armor");
         end
     end
 
@@ -242,9 +243,9 @@
     function WarriorRendCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2);
         if isActive then 
-            CastSpellByName("Rend");
-        else 
             CastSpellByName("Defensive Stance");
+        else 
+            CastSpellByName("Rend");
         end
     end
 
