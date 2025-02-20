@@ -241,7 +241,7 @@
     --API for warrior Rend cast (also switches stances)
     function WarriorRendCast()
         local _,_,isActive,_ = GetShapeshiftFormInfo(2);
-        if isActive then 
+        if not isActive then 
             CastSpellByName("Defensive Stance");
         else 
             CastSpellByName("Rend");
