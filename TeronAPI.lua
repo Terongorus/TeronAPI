@@ -7,8 +7,8 @@
             elseif (not PlayerFrame.inCombat) then
                 AttackTarget()              
             end
-            CastSpellByName("Attack")
         end
+        CastSpellByName("Attack")
     end
 --Shaman custom APIs
     --Magma Totem casting function--
