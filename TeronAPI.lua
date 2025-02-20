@@ -1,6 +1,7 @@
 --General custom APIs
     --Auto attack - Version 1
     function StartAutoAttack()
+        TargetNearestEnemy();
         local isAttacking = false
         for i=1,120 do 
             if IsCurrentAction(i) then 
@@ -13,6 +14,34 @@
             CastSpellByName("Attack")
         end
     end
+
+    --AttackTarget - Version 2
+    local attacking;
+    local f = CreateFrame'Frame';
+
+    f:RegisterEvent'PLAYER_ENTER_COMBAT'
+    f:RegisterEvent'PLAYER_LEAVE_COMBAT'
+    f:SetScript('OnEvent', function()
+        attacking = event == 'PLAYER_ENTER_COMBAT'
+    end)
+
+    SLASH_ATTACK1 = '/startattack'
+    function SlashCmdList.ATTACK(command)
+        if not attacking then
+            CastSpellByName'Attack'
+        end
+    end
+
+    --f:SetScript('OnUpdate', function()
+        --f:SetScript('OnUpdate', nil)
+        --for i = 1, GetNumMacros() do
+           --if GetMacroInfo(i) == 'attack' then
+                --EditMacro(i, 'attack', 140, '/startattack', 1)
+                --return
+            --end
+       --end
+        --CreateMacro('attack', 140, '/startattack', 1)
+    --end)
 --Shaman custom APIs
     --Magma Totem casting function--
     --function CastMagmaTotem()
