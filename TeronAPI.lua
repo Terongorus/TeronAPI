@@ -28,6 +28,7 @@
     SLASH_ATTACK1 = '/startattack'
     function SlashCmdList.ATTACK(command)
         if not attacking then
+            TargetNearestEnemy();
             CastSpellByName'Attack'
         end
     end
