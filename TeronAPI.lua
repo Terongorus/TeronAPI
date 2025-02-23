@@ -149,9 +149,9 @@
     end
     --API for warrior Intervene cast without targeting (uses target of target)
     function WarriorInterveneCast()
-        local t_dead = UnitIsDeadOrGhost("targetoftarget");
-        local t_party = UnitInParty("targetoftarget");
-        local t_friendly = UnitIsFriend("player", "targetoftarget");
+        local t_dead = UnitIsDeadOrGhost("targettarget");
+        local t_party = UnitInParty("targettarget");
+        local t_friendly = UnitIsFriend("player", "targettarget");
 
         if not t_dead and t_party and t_friendly then 
             CastSpellByName("Intervene");
