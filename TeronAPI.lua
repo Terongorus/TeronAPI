@@ -147,7 +147,17 @@
             c("Charge")
         end         
     end
+    --API for warrior Intervene cast without targeting (uses target of target)
+    function WarriorInterveneCast()
+        local t_dead = UnitIsDeadOrGhost("targetoftarget");
+        local t_party = UnitInParty("targetoftarget");
+        local t_friendly = UnitIsFriend("player", "targetoftarget");
 
+        if not t_dead and t_party and t_friendly then 
+            CastSpellByName("Intervene");
+        end
+        
+    end
     --API for warrior Battle Shout on 2 min cooldown
     --function ()
         --run local z=0 for i=1,27 do t=UnitBuff("player",i) if (t and strfind(t,"ThunderBolt")) then z=1 break end end if z==1 then CastSpellByName("Judgement") else CastSpellByName("Seal of Righteousness") end 
