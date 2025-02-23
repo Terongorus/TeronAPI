@@ -16,6 +16,17 @@
     ],
     "Lua.diagnostics.globals": [
         "PlayerFrame",
-        "SlashCmdList"
+        "SlashCmdList",
+        "ColorPickerFrame",
+        "ActionButton1Name",
+        "UIPanelWindows",
+        "PanelTemplates_SetNumTabs",
+        "PanelTemplates_UpdateTabs",
+        "FauxScrollFrame_Update",
+        "FauxScrollFrame_GetOffset",
+        "MacroFrame_SaveMacro",
+        "ChatEdit_OnEscapePressed",
+        "CHARACTER_SPECIFIC_MACROS",
+        "ChatEdit_SendText"
     ]
 }
