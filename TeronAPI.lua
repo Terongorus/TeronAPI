@@ -1,21 +1,4 @@
 --General custom APIs
-    --Auto attack - Version 1
-    --doesn't correctly trigger the attack; need to fix
-    function StartAutoAttack()
-        TargetNearestEnemy();
-        local isAttacking = false
-        for i=1,120 do 
-            if IsCurrentAction(i) then 
-                isAttacking = true
-                break
-            end
-        end
-        
-        if not isAttacking then
-            CastSpellByName("Attack")
-        end
-    end
-
     --AttackTarget - Version 2
     local attacking;
     local f = CreateFrame'Frame';
@@ -147,14 +130,18 @@
             c("Charge")
         end         
     end
+
     --API for warrior Intervene cast without targeting (uses target of target)
     function WarriorInterveneCast()
         local t_dead = UnitIsDeadOrGhost("targettarget");
         local t_party = UnitInParty("targettarget");
         local t_friendly = UnitIsFriend("player", "targettarget");
+        local stance = GetShapeshiftFormInfo(2);
 
         if not t_dead and t_party and t_friendly then 
             CastSpellByName("Intervene");
+        elseif not stance then
+            CastSpellByName("Defensive Stance");
         end
         
     end
