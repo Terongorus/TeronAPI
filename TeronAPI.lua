@@ -113,12 +113,19 @@
         t.Guns="Gun"
         t.Crossbows="Crossbow"
         t.Thrown="Throw"
+--        CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
 
-        if CheckInteractDistance("target", 3) and (not PlayerFrame.inCombat) then
+        if CheckInteractDistance("target", 3) then
             AttackTarget();
         else
             CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
         end
+
+--        if CheckInteractDistance("target", 3) and (not PlayerFrame.inCombat) then
+--            AttackTarget();
+--        else
+--            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+--        end
         
     end
 
