@@ -6,7 +6,6 @@
     local f = CreateFrame'Frame';
 
     no_combat = PlayerFrame.inCombat;
-    attacking = false;
 
     f:RegisterEvent'PLAYER_ENTER_COMBAT'
     f:RegisterEvent'PLAYER_LEAVE_COMBAT'
@@ -17,12 +16,10 @@
     
     SLASH_ATTACK1 = '/startattack'
     function SlashCmdList.ATTACK(command)
-        if target_change then
+        if not attacking or target_change or no_combat then
             AttackTarget();
             --TargetNearestEnemy();
             --CastSpellByName'Attack'
-        elseif attacking then
-            AttackTarget();
         end
     end
 
