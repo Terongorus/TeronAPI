@@ -103,7 +103,7 @@
         t.Thrown="Throw"
 --        CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
 
-        if CheckInteractDistance("target", 3) then
+        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
             AttackTarget();
         else
             CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
