@@ -1,7 +1,12 @@
 --General custom APIs
     --AttackTarget - Version 2
     local attacking;
+    local target_change;
+    local no_combat;
     local f = CreateFrame'Frame';
+
+    no_combat = PlayerFrame.inCombat;
+    attacking = false;
 
     f:RegisterEvent'PLAYER_ENTER_COMBAT'
     f:RegisterEvent'PLAYER_LEAVE_COMBAT'
