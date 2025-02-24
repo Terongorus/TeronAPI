@@ -4,9 +4,6 @@ To use the following custom APIs, all your have to do, is to put "/run *name of 
 
 List of available functions:
 
-  **General custom APIs:**
-  1. Added a custom function that works similarly to how */startattack* used to work in Classic WoW and SoD. Simply put "/startattack" in your macro and you're all set!
-
   **Warrior custom APIs:**
   1. **WarriorRangePull()** -> depending on the type of weapon equiped, shoots with the respective ability *(shoot bow, shoot gun, shoot crossbow, throw)*; decreases time to swap abilities on the action bar
   2. **WarriorChargeInterceptCast()** -> allows for the usage of both Charge and Intercept with the click of only one button; Charge out of combat and Intercept in combat, respectively
