@@ -12,9 +12,12 @@
     
     SLASH_ATTACK1 = '/startattack'
     function SlashCmdList.ATTACK(command)
-        if not attacking or target_change then
-            TargetNearestEnemy();
-            CastSpellByName'Attack'
+        if target_change then
+            AttackTarget();
+            --TargetNearestEnemy();
+            --CastSpellByName'Attack'
+        elseif attacking then
+            AttackTarget();
         end
     end
 
