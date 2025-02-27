@@ -135,8 +135,6 @@
 
         if not t_dead and t_party and t_friendly then 
             CastSpellByName("Intervene");
-        elseif not stance then
-            CastSpellByName("Defensive Stance");
         end
         
     end
