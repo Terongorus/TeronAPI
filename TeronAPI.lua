@@ -244,4 +244,19 @@
             CastSpellByName("Rend");
         end
     end
+--Auto tracking (mining, herbalism, etc.)
+    local f = CreateFrame'TrackingFrame'
+    f:RegisterEvent'PLAYER_ENTER_WORLD'
+    f:SetScript('OnEvent', function()
+        enter_world = event == 'PLAYER_ENTER_WORLD'
 
+        if not IsShiftKeyDown() then
+            for i = 1, GetNumTrackingTypes() do
+                local name, texture, active, category = GetTrackingInfo(i)
+                if category == 'spell' and name == 'Find Minerals' then
+                    CastSpellByName('Find Minerals')
+                    return
+                end
+            end
+        end
+    end)
