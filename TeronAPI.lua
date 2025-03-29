@@ -245,7 +245,7 @@
         end
     end
 --Auto tracking (mining, herbalism, etc.)
-    local f = CreateFrame'TrackingFrame'
+    local f = CreateFrame("Frame", "AutoTrackingFrame")
     f:RegisterEvent'PLAYER_ENTER_WORLD'
     f:SetScript('OnEvent', function()
         enter_world = event == 'PLAYER_ENTER_WORLD'
