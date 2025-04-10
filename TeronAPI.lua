@@ -249,7 +249,7 @@
     function CastJudgementOfRigheousness()
         local z=0;
 
-        for i=1,27 do
+        for i=1,40 do
             t=UnitBuff("player",i);
             if (t and strfind(t,"Ability_ThunderBolt")) then 
                 z=1; 
@@ -268,7 +268,7 @@
     function CastJudgementOfWisdom()
         local z=0;
 
-        for i=1,27 do
+        for i=1,40 do
             t=UnitBuff("player",i);
             if (t and strfind(t,"Spell_Holy_RighteousnessAura")) then 
                 z=1; 
@@ -287,7 +287,7 @@
     function CastJudgementOfLight()
         local z=0;
 
-        for i=1,27 do
+        for i=1,40 do
             t=UnitBuff("player",i);
             if (t and strfind(t,"Spell_Holy_HealingAura")) then 
                 z=1; 
@@ -306,7 +306,7 @@
     function CastJudgementOfJustice()
         local z=0;
 
-        for i=1,27 do
+        for i=1,40 do
             t=UnitBuff("player",i);
             if (t and strfind(t,"Spell_Holy_SealOfWrath")) then 
                 z=1; 
@@ -325,7 +325,7 @@
     function CastJudgementOfCommand()
         local z=0;
 
-        for i=1,27 do
+        for i=1,40 do
             t=UnitBuff("player",i);
             if (t and strfind(t,"Ability_Warrior_InnerRage")) then 
                 z=1; 
@@ -344,7 +344,7 @@
     function CastJudgementOfTheCrusader()
         local z=0;
 
-        for i=1,27 do
+        for i=1,40 do
             t=UnitBuff("player",i);
             if (t and strfind(t,"Spell_Holy_HolySmite")) then 
                 z=1; 
