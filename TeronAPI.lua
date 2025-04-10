@@ -250,13 +250,7 @@
         local z=0;
         local i;
         local t;
-
-        if z==1 then 
-            CastSpellByName("Judgement");
-        else 
-            CastSpellByName("Seal of Righteousness");
-        end
---        CastSpellByName("Judgement");
+        CastSpellByName("Judgement");
 
         for i=1,40 do
             t=UnitBuff("player",i);
@@ -265,6 +259,10 @@
                 break;
             end 
         end 
+
+        if z==0 then 
+            CastSpellByName("Seal of Righteousness");
+        end
     end
     --Seal of Wisdom cast + Judgement of Wisdom cast
     function CastJudgementOfWisdom()
