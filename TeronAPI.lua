@@ -248,9 +248,7 @@
     --Seal of Righteousness cast + Judgement of Righteousness cast 
     function CastJudgementOfRigheousness()
         local z=0;
-        local i;
-        local t;
-        CastSpellByName("Judgement");
+--        CastSpellByName("Judgement");
 
         for i=1,40 do
             t=UnitBuff("player",i);
@@ -276,9 +274,7 @@
             end 
         end 
 
-        if z==1 then 
-            CastSpellByName("Judgement");
-        else 
+        if z==0 then 
             CastSpellByName("Seal of Wisdom");
         end
 
@@ -295,9 +291,7 @@
             end 
         end 
 
-        if z==1 then 
-            CastSpellByName("Judgement");
-        else 
+        if z==0 then 
             CastSpellByName("Seal of Light");
         end
 
@@ -314,9 +308,7 @@
             end 
         end 
 
-        if z==1 then 
-            CastSpellByName("Judgement");
-        else 
+        if z==0 then 
             CastSpellByName("Seal of Justice");
         end
 
@@ -333,9 +325,7 @@
             end 
         end 
 
-        if z==1 then 
-            CastSpellByName("Judgement");
-        else 
+        if z==0 then 
             CastSpellByName("Seal of Command");
         end
 
@@ -352,9 +342,7 @@
             end 
         end 
 
-        if z==1 then 
-            CastSpellByName("Judgement");
-        else 
+        if z==0 then 
             CastSpellByName("Seal of the Crusader");
         end
 
