@@ -244,19 +244,118 @@
             CastSpellByName("Rend");
         end
     end
---Auto tracking (mining, herbalism, etc.)
-    local f = CreateFrame("Frame", "AutoTrackingFrame")
-    f:RegisterEvent'PLAYER_ENTER_WORLD'
-    f:SetScript('OnEvent', function()
-        enter_world = event == 'PLAYER_ENTER_WORLD'
+--Paladin Custom APIs
+    --Seal of Righteousness cast + Judgement of Righteousness cast 
+    function CastJudgementOfRigheousness()
+        local z=0;
 
-        if not IsShiftKeyDown() then
-            for i = 1, GetNumTrackingTypes() do
-                local name, texture, active, category = GetTrackingInfo(i)
-                if category == 'spell' and name == 'Find Minerals' then
-                    CastSpellByName('Find Minerals')
-                    return
-                end
-            end
+        for i=1,27 do
+            t=UnitBuff("player",i);
+            if (t and strfind(t,"Ability_ThunderBolt")) then 
+                z=1; 
+                break;
+            end 
+        end 
+
+        if z==1 then 
+            CastSpellByName("Judgement");
+        else 
+            CastSpellByName("Seal of Righteousness");
         end
-    end)
+
+    end
+    --Seal of Wisdom cast + Judgement of Wisdom cast
+    function CastJudgementOfWisdom()
+        local z=0;
+
+        for i=1,27 do
+            t=UnitBuff("player",i);
+            if (t and strfind(t,"Spell_Holy_RighteousnessAura")) then 
+                z=1; 
+                break;
+            end 
+        end 
+
+        if z==1 then 
+            CastSpellByName("Judgement");
+        else 
+            CastSpellByName("Seal of Wisdom");
+        end
+
+    end
+    --Seal of Light cast + Judgement of Light cast
+    function CastJudgementOfLight()
+        local z=0;
+
+        for i=1,27 do
+            t=UnitBuff("player",i);
+            if (t and strfind(t,"Spell_Holy_HealingAura")) then 
+                z=1; 
+                break;
+            end 
+        end 
+
+        if z==1 then 
+            CastSpellByName("Judgement");
+        else 
+            CastSpellByName("Seal of Light");
+        end
+
+    end
+    --Seal of Justice cast + Judgement of Justice cast
+    function CastJudgementOfJustice()
+        local z=0;
+
+        for i=1,27 do
+            t=UnitBuff("player",i);
+            if (t and strfind(t,"Spell_Holy_SealOfWrath")) then 
+                z=1; 
+                break;
+            end 
+        end 
+
+        if z==1 then 
+            CastSpellByName("Judgement");
+        else 
+            CastSpellByName("Seal of Justice");
+        end
+
+    end
+    --Seal of Command cast + Judgement of Command cast
+    function CastJudgementOfCommand()
+        local z=0;
+
+        for i=1,27 do
+            t=UnitBuff("player",i);
+            if (t and strfind(t,"Ability_Warrior_InnerRage")) then 
+                z=1; 
+                break;
+            end 
+        end 
+
+        if z==1 then 
+            CastSpellByName("Judgement");
+        else 
+            CastSpellByName("Seal of Command");
+        end
+
+    end
+    --Seal of the Crusader cast + Judgement of the Crusader cast
+    function CastJudgementOfTheCrusader()
+        local z=0;
+
+        for i=1,27 do
+            t=UnitBuff("player",i);
+            if (t and strfind(t,"Spell_Holy_HolySmite")) then 
+                z=1; 
+                break;
+            end 
+        end 
+
+        if z==1 then 
+            CastSpellByName("Judgement");
+        else 
+            CastSpellByName("Seal of the Crusader");
+        end
+
+    end
