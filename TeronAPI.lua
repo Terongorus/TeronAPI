@@ -245,8 +245,8 @@
         end
     end
 --Paladin Custom APIs
-    --Seal of Righteousness cast + Judgement of Righteousness cast 
-    function CastJudgementOfRigheousness()
+    --Seal of Righteousness cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
+    function CastSealOfRigheousness()
         local z=0;
 --        CastSpellByName("Judgement");
 
@@ -262,8 +262,8 @@
             CastSpellByName("Seal of Righteousness");
         end
     end
-    --Seal of Wisdom cast + Judgement of Wisdom cast
-    function CastJudgementOfWisdom()
+    --Seal of Wisdom cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
+    function CastSealOfWisdom()
         local z=0;
 
         for i=1,40 do
@@ -279,8 +279,8 @@
         end
 
     end
-    --Seal of Light cast + Judgement of Light cast
-    function CastJudgementOfLight()
+    --Seal of Light cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
+    function CastSealOfLight()
         local z=0;
 
         for i=1,40 do
@@ -296,8 +296,8 @@
         end
 
     end
-    --Seal of Justice cast + Judgement of Justice cast
-    function CastJudgementOfJustice()
+    --Seal of Justice cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
+    function CastSealOfJustice()
         local z=0;
 
         for i=1,40 do
@@ -313,8 +313,8 @@
         end
 
     end
-    --Seal of Command cast + Judgement of Command cast
-    function CastJudgementOfCommand()
+    --Seal of Command cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
+    function CastSealOfCommand()
         local z=0;
 
         for i=1,40 do
@@ -330,8 +330,8 @@
         end
 
     end
-    --Seal of the Crusader cast + Judgement of the Crusader cast
-    function CastJudgementOfTheCrusader()
+    --Seal of the Crusader cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
+    function CastSealOfTheCrusader()
         local z=0;
 
         for i=1,40 do
