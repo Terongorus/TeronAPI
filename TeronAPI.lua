@@ -347,3 +347,27 @@
         end
 
     end
+    --Divine Shield cast (upon pressing the button, it will cast the spell and then cancel it; this is useful for tanks)
+    function CastDivineShield()
+        local i=0;
+
+        g=GetPlayerBuff 
+        
+        while not (g(i) == -1) do 
+            if(strfind(GetPlayerBuffTexture(g(i)), "Spell_Holy_DivineIntervention"))then 
+                CancelPlayerBuff(g(i))
+            end i = i + 1; 
+        end
+    end
+    --Divine Protection cast (upon pressing the button, it will cast the spell and then cancel it; this is useful for tanks)
+    function CastDivineProtection()
+        local i=0 
+
+        g=GetPlayerBuff 
+
+        while not (g(i) == -1) do 
+            if(strfind(GetPlayerBuffTexture(g(i)), "Spell_Holy_Restoration"))then 
+                CancelPlayerBuff(g(i))
+            end i = i + 1; 
+        end
+    end
