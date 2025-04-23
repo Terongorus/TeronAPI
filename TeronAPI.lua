@@ -248,7 +248,7 @@
     --Seal of Righteousness cast (cannot be cast again while the buff is active; combine with /cast Judgement in your macro)
     function CastSealOfRigheousness()
         local z=0;
---        CastSpellByName("Judgement");
+        --CastSpellByName("Judgement");
 
         for i=1,40 do
             t=UnitBuff("player",i);
@@ -369,5 +369,50 @@
             if(strfind(GetPlayerBuffTexture(g(i)), "Spell_Holy_Restoration"))then 
                 CancelPlayerBuff(g(i))
             end i = i + 1; 
+        end
+    end
+
+--Warlock custom APIs
+    --Damage over time rotation
+    function WarlockDoTRotation()
+        local cast = CastSpellByName 
+        local debuff = UnitDebuff;
+        for index=1,40 do 
+            if strfind(tostring(UnitDebuff("target",index)),k) then
+                return 1 
+            end 
+        end 
+    
+        --Immolate
+        if not b("Spell_Fire_Immolation") then 
+            cast("Immolate");
+        --Siphon Life   
+        elseif not b("Spell_Shadow_Requiem") then
+            cast("Siphon Life");
+        --Curse of Agony
+        --elseif not b("Spell_Shadow_CurseOfSargeras") then 
+            c("Curse of Agony");
+        --Curse of Weakness
+        elseif not b("spell_shadow_CurseOfMannoroth") then
+            c("Curse of Weakness");
+        --Curse of Recklessness
+        --elseif not b("Spell_Shadow_UnholyStrength") then
+            c("Curse of Recklessness");
+        --Curse of Shadow
+        --elseif not b("Spell_Shadow_CurseOfAchimonde") then 
+            c("Curse of Shadow");
+        --Curse of Elements
+        --elseif not b("Spell_Shadow_ChillTouch") then
+            c("Curse of Elements");
+        --Curse of Tongues    
+        --elseif not b("Spell_Shadow_CurseOfTounges") then
+            c("Curse of Tongues");
+        --Curse of Exhaustion    
+        --elseif not b("Spell_Shadow_GrimWard") then
+            c("Curse of Exhaustion");
+        elseif not b("Spell_Shadow_AbominationExplosion") then 
+            c("Corruption") 
+        else 
+            Attack();
         end
     end
