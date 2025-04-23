@@ -376,7 +376,8 @@
     --Damage over time rotation
     function WarlockDoTRotation()
         local cast = CastSpellByName 
-        local debuff = UnitDebuff;
+        local b = UnitDebuff;
+        local k = "Spell_Fire_Immolation";
         for index=1,40 do 
             if strfind(tostring(UnitDebuff("target",index)),k) then
                 return 1 
