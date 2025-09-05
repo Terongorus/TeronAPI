@@ -14,7 +14,8 @@
         for tab=1, GetNumTalentTabs() do
             for idx=1, GetNumTalents(tab) do
                 local name, _, _, _, _, _, id = GetTalentInfo(tab, idx)
-                print("Name: ", name, " ID: ", id)
+                local full_string = "Name: " .. name .. " ID: " .. id
+                print(full_string)
             end
         end
     end
@@ -426,4 +427,5 @@
             Attack();
         end
     end
+
 
