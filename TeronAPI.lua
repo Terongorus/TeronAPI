@@ -9,6 +9,15 @@
        --end
         --CreateMacro('attack', 140, '/startattack', 1)
     --end)
+    --API to get current talent IDs
+    function GetCurrentClassTalentIDs()
+        for tab=1, GetNumTalentTabs() do
+            for idx=1, GetNumTalents(tab) do
+                local name, _, _, _, _, _, id = GetTalentInfo(tab, idx)
+                print("Name: " .. name .. ", ID: " .. id)
+            end
+        end
+    end
 --Shaman custom APIs
     --Magma Totem casting function--
     --function CastMagmaTotem()
