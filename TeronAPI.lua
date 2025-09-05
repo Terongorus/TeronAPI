@@ -11,11 +11,18 @@
     --end)
     --API to get current talent IDs
     function GetCurrentClassTalentIDs()
-        for tab=1, GetNumTalentTabs() do
-            for idx=1, GetNumTalents(tab) do
+        for tab = 1, GetNumTalentTabs() do
+            for idx = 1, GetNumTalents(tab) do
                 local name, _, _, _, _, _, id = GetTalentInfo(tab, idx)
-                local full_string = "Name: " .. name .. " ID: " .. id
-                print(full_string)
+                if name then
+                    local msg = "Talent: " .. name
+                    if id then
+                        msg = msg .. " | ID: " .. id
+                    else
+                        msg = msg .. " | ID: (not available)"
+                    end
+                    DEFAULT_CHAT_FRAME:AddMessage(msg)
+                end
             end
         end
     end
