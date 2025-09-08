@@ -26,6 +26,36 @@
             end
         end
     end
+
+    local function AddSpellID(tooltip, spellId)
+        if spellId then
+            tooltip:AddLine("Spell ID: " .. spellId, 0.6, 0.8, 1)
+            tooltip:Show()
+        end
+    end
+
+    -- Hook SetSpell to catch spell tooltips
+    hooksecurefunc(GameTooltip, "SetSpell", function(self, spellId, spellBookSlot)
+        if spellId then
+            AddSpellID(self, spellId)
+        end
+    end)
+
+    -- Hook SetHyperlink (spells linked in chat)
+    hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(self, link)
+        local type, id = string.match(link, "^(%a+):(%d+)")
+        if type == "spell" then
+            AddSpellID(self, id)
+        end
+    end)
+
+    -- Hook SetAction (buttons on action bars)
+    hooksecurefunc(GameTooltip, "SetAction", function(self, slot)
+        local actionType, id = GetActionInfo(slot)
+        if actionType == "spell" and id then
+            AddSpellID(self, id)
+        end
+    end)
 --Shaman custom APIs
     --Magma Totem casting function--
     --function CastMagmaTotem()
