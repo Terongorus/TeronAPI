@@ -27,35 +27,51 @@
         end
     end
 
+    -- helper: add spell ID line to a tooltip
     local function AddSpellID(tooltip, spellId)
         if spellId then
-            tooltip:AddLine("Spell ID: " .. spellId, 0.6, 0.8, 1)
+            tooltip:AddLine("Spell ID: " .. spellId, 0.6, 0.8, 1.0)
             tooltip:Show()
         end
     end
 
-    -- Hook SetSpell to catch spell tooltips
-    hooksecurefunc(GameTooltip, "SetSpell", function(self, spellId, spellBookSlot)
-        if spellId then
+    -- helper: resolve spell ID from book slot/index
+    local function ResolveSpellID(index, bookType)
+        local link = GetSpellLink(index, bookType)
+        if link then
+            local id = string.match(link, "spell:(%d+)")
+            return id and tonumber(id)
+        end
+    end
+
+    -- Save original GameTooltip:SetSpell
+    local Original_GameTooltip_SetSpell = GameTooltip.SetSpell
+    function GameTooltip:SetSpell(index, bookType)
+        Original_GameTooltip_SetSpell(self, index, bookType)
+        local spellId = ResolveSpellID(index, bookType)
+        AddSpellID(self, spellId)
+    end
+
+    -- Save original GameTooltip:SetAction
+    local Original_GameTooltip_SetAction = GameTooltip.SetAction
+    function GameTooltip:SetAction(slot)
+        Original_GameTooltip_SetAction(self, slot)
+        local actionType, id, bookType = GetActionInfo(slot)
+        if actionType == "spell" then
+            local spellId = ResolveSpellID(id, bookType)
             AddSpellID(self, spellId)
         end
-    end)
+    end
 
-    -- Hook SetHyperlink (spells linked in chat)
-    hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(self, link)
-        local type, id = string.match(link, "^(%a+):(%d+)")
-        if type == "spell" then
-            AddSpellID(self, id)
+    -- Save original ItemRefTooltip:SetHyperlink (chat spell links)
+    local Original_ItemRefTooltip_SetHyperlink = ItemRefTooltip.SetHyperlink
+    function ItemRefTooltip:SetHyperlink(link)
+        Original_ItemRefTooltip_SetHyperlink(self, link)
+        local _, id = string.match(link or "", "^(%a+):(%d+)")
+        if id then
+            AddSpellID(self, tonumber(id))
         end
-    end)
-
-    -- Hook SetAction (buttons on action bars)
-    hooksecurefunc(GameTooltip, "SetAction", function(self, slot)
-        local actionType, id = GetActionInfo(slot)
-        if actionType == "spell" and id then
-            AddSpellID(self, id)
-        end
-    end)
+    end
 --Shaman custom APIs
     --Magma Totem casting function--
     --function CastMagmaTotem()
