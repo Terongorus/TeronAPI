@@ -448,7 +448,7 @@
         f:SetScript("OnEvent", function()
             event_in_combat = event == "PLAYER_ENTER_COMBAT";
             event_not_in_combat = event == "PLAYER_LEAVE_COMBAT";
-        );
+        end)
         
         if event_in_combat and in_combat and not event_not_in_combat then
             CastSpellByName("Feign Death");
@@ -470,7 +470,7 @@
         f:SetScript("OnEvent", function()
             event_in_combat = event == "PLAYER_ENTER_COMBAT";
             event_not_in_combat = event == "PLAYER_LEAVE_COMBAT";
-        );
+        end)
         
         if event_in_combat and in_combat and not event_not_in_combat then
             CastSpellByName("Feign Death");
@@ -492,7 +492,7 @@
         f:SetScript("OnEvent", function()
             event_in_combat = event == "PLAYER_ENTER_COMBAT";
             event_not_in_combat = event == "PLAYER_LEAVE_COMBAT";
-        );
+        end)
         
         if event_in_combat and in_combat and not event_not_in_combat then
             CastSpellByName("Feign Death");
@@ -514,7 +514,7 @@
         f:SetScript("OnEvent", function()
             event_in_combat = event == "PLAYER_ENTER_COMBAT";
             event_not_in_combat = event == "PLAYER_LEAVE_COMBAT";
-        );
+        end)
         
         if event_in_combat and in_combat and not event_not_in_combat then
             CastSpellByName("Feign Death");
