@@ -435,4 +435,25 @@
         end
     end
 
+--Hunter custom APIs
+    function Hunter_ImmolationTrap()
+        local f = CreateFrame"Frame";
+        local in_combat = PlayerFrame.inCombat;
+        local event_in_combat;
+        local event_not_in_combat;
 
+        f:RegisterEvent"PLAYER_LEAVE_COMBAT";
+        f:RegisterEvent"PLAYER_ENTER_COMBAT";
+        f:SetScript("OnEvent", function()
+            event_in_combat = event == "PLAYER_ENTER_COMBAT";
+            event_not_in_combat = event == "PLAYER_LEAVE_COMBAT";
+        );
+        
+        if event_in_combat and in_combat and not event_not_in_combat then
+            CastSpellByName("Feign Death");
+        elseif event_not_in_combat and not event_in_combat and not in_combat then
+            CastSpellByName("Immolation Trap");
+        else
+            return;
+        end
+    end
