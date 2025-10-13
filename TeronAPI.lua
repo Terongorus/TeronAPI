@@ -481,7 +481,7 @@
         end
     end
     --Frost Trap
-    function Hunter_ImmolationTrap()
+    function Hunter_FrostTrap()
         local f = CreateFrame"Frame";
         local in_combat = PlayerFrame.inCombat;
         local event_in_combat;
@@ -503,7 +503,7 @@
         end
     end
     --Explosive Trap
-    function Hunter_ImmolationTrap()
+    function Hunter_ExplosiveTrap()
         local f = CreateFrame"Frame";
         local in_combat = PlayerFrame.inCombat;
         local event_in_combat;
