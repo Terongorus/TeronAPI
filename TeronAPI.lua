@@ -101,7 +101,11 @@
     end)
     --API for warrior range pull spell
     function WarriorRangePull()
-        local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
+        if strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)") then
+            local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
+        else
+            return;
+        end
         local _,_,_,_,_,p=GetItemInfo(i);
         local t={};
         t.Bows="Bow"
