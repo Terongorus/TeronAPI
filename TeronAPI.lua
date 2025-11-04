@@ -101,7 +101,7 @@
     end)
     --API for warrior range pull spell
     function WarriorRangePull()
-        if strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)") ~= nill then
+        if GetInventoryItemLink("player",18) ~= nil then
             local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
         else
             return;
