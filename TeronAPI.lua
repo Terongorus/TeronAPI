@@ -100,7 +100,28 @@
         target_change = event == 'PLAYER_TARGET_CHANGED'
     end)
     --API for warrior range pull spell
+    function WarriorRangePull()
+        local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
+        local _,_,_,_,_,p=GetItemInfo(i);
+        local t={};
+        t.Bows="Bow"
+        t.Guns="Gun"
+        t.Crossbows="Crossbow"
+        t.Thrown="Throw"
+        
+--      if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
+--            AttackTarget();
+--      else
+--            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+--      end
 
+        if CheckInteractDistance("target", 3) then
+            AttackTarget();
+        else
+            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+        end
+        
+    end
     --API for warrior Charge (in combat) and Intercept (out of combat)
     function WarriorChargeInterceptCast()
         local g = GetShapeshiftFormInfo;
@@ -502,3 +523,4 @@
         end
 
     end
+
