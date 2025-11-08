@@ -99,6 +99,7 @@
         attacking = event == 'PLAYER_ENTER_COMBAT'
         target_change = event == 'PLAYER_TARGET_CHANGED'
     end)
+
     --API for warrior range pull spell
     function WarriorRangePull()
         local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
@@ -115,7 +116,7 @@
 --            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
 --      end
 
-        if CheckInteractDistance("target", 3) then
+        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
             AttackTarget();
         else
             CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
