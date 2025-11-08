@@ -106,11 +106,7 @@
         else
             return;
         end
-        if i ~= nil then
-            local _,_,_,_,_,p=GetItemInfo(i);
-        else
-            return;
-        end
+        local _,_,_,_,_,p=GetItemInfo(i);
         local t={};
         t.Bows="Bow"
         t.Guns="Gun"
