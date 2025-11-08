@@ -100,45 +100,6 @@
         target_change = event == 'PLAYER_TARGET_CHANGED'
     end)
     --API for warrior range pull spell
-    function WarriorRangePull()
-        local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
-        local _,_,_,_,_,p=GetItemInfo(i);
-        local t={};
-        t.Bows="Bow"
-        t.Guns="Gun"
-        t.Crossbows="Crossbow"
-        t.Thrown="Throw"
-<<<<<<< HEAD
---        CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-
-        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
-            AttackTarget();
-        else
-            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-        end
-
---        if CheckInteractDistance("target", 3) and (not PlayerFrame.inCombat) then
-=======
---        CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-
---        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
->>>>>>> 5734a91c48e5277b8b30e7c5b933c4f592e05e77
---            AttackTarget();
---        else
---            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
---        end
-<<<<<<< HEAD
-        
-=======
-
-        if CheckInteractDistance("target", 3) and (not PlayerFrame.inCombat) then
-            AttackTarget();
-        else
-            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-        end
-        
->>>>>>> 5734a91c48e5277b8b30e7c5b933c4f592e05e77
-    end
 
     --API for warrior Charge (in combat) and Intercept (out of combat)
     function WarriorChargeInterceptCast()
@@ -539,4 +500,5 @@
         else
             return;
         end
+
     end
