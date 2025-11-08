@@ -108,20 +108,12 @@
         t.Guns="Gun"
         t.Crossbows="Crossbow"
         t.Thrown="Throw"
---        CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-
-        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
-            AttackTarget();
-        else
-            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-        end
-
+        CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
 --        if CheckInteractDistance("target", 3) and (not PlayerFrame.inCombat) then
 --            AttackTarget();
 --        else
 --            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
 --        end
-        
     end
 
     --API for warrior Charge (in combat) and Intercept (out of combat)
