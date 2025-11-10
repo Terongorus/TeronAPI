@@ -110,13 +110,22 @@
         t.Crossbows="Crossbow"
         t.Thrown="Throw"
         
---      if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
+        --version 1.0
+--        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
 --            AttackTarget();
---      else
+--        else
 --            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
---      end
+--        end
 
-        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
+        --version 2.0
+--        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
+--            AttackTarget();
+--        else
+--            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+--        end
+
+        --version 3.0
+        if CheckInteractDistance("target", 3) then
             AttackTarget();
         else
             CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
