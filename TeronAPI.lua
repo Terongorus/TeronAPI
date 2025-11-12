@@ -111,11 +111,11 @@
         t.Thrown="Throw"
         
         --version 1.0
---        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
---            AttackTarget();
---        else
---            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
---        end
+        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
+            AttackTarget();
+        else
+            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+        end
 
         --version 2.0
 --        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
@@ -125,11 +125,11 @@
 --        end
 
         --version 3.0
-        if CheckInteractDistance("target", 3) then
-            AttackTarget();
-        else
-            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
-        end
+--        if CheckInteractDistance("target", 3) then
+--            AttackTarget();
+--        else
+--            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+--        end
         
     end
     --API for warrior Charge (in combat) and Intercept (out of combat)
