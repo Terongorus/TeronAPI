@@ -102,21 +102,24 @@
 
     --API for warrior range pull spell
     function WarriorRangePull()
-        local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
-        local _,_,_,_,_,p=GetItemInfo(i);
-        local t={};
-        t.Bows="Bow"
-        t.Guns="Gun"
-        t.Crossbows="Crossbow"
-        t.Thrown="Throw"
-        
-        --version 1.0
-        if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
-            AttackTarget();
+        if (GetInventoryItemLink("player",18) != nil) then
+            local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
+            local _,_,_,_,_,p=GetItemInfo(i);
+            local t={};
+            t.Bows="Bow"
+            t.Guns="Gun"
+            t.Crossbows="Crossbow"
+            t.Thrown="Throw"
+            
+            --version 1.0
+            if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
+                AttackTarget();
+            else
+                CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+            end
         else
-            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
+            return;
         end
-
         --version 2.0
 --        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
 --            AttackTarget();
