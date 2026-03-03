@@ -102,7 +102,7 @@
 
     --API for warrior range pull spell
     function WarriorRangePull()
-        if (HasWandEqupped() != nil) then
+        if not HasWandEqupped() then
             local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
             local _,_,_,_,_,p=GetItemInfo(i);
             local t={};
