@@ -118,7 +118,7 @@
                 CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
             end
         else
-            UIErrorsFrame:AddMessage("You don't have a ranged weapon equipped!");
+            UIErrorsFrame:AddMessage("You don't have a ranged weapon equipped!", 1.0, 0.0, 0.0, 1.0, 2.0);
         end
         --version 2.0
 --        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
