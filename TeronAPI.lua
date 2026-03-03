@@ -102,7 +102,7 @@
 
     --API for warrior range pull spell
     function WarriorRangePull()
-        if (GetInventoryItemLink("player",18) != nil) then
+        if (HasWandEqupped() != nil) then
             local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
             local _,_,_,_,_,p=GetItemInfo(i);
             local t={};
@@ -118,7 +118,7 @@
                 CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
             end
         else
-            return;
+            UIErrorsFrame:AddMessage("You don't have a ranged weapon equipped!");
         end
         --version 2.0
 --        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
