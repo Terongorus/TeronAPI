@@ -9,6 +9,7 @@
        --end
         --CreateMacro('attack', 140, '/startattack', 1)
     --end)
+
     --API to get current talent IDs
     function GetCurrentClassTalentIDs()
         for tab = 1, GetNumTalentTabs() do
@@ -26,6 +27,49 @@
             end
         end
     end
+    -- Always Show Action Bars
+    local lastState = {};
+    -- Check the current state of the visibility of each bar
+    local function AreActionBarsVisible()
+        return {
+            bottomLeft  = GetCVar("bottomLeftActionBar") == "1",
+            bottomRight = GetCVar("bottomRightActionBar") == "1",
+            right1      = GetCVar("rightActionBar") == "1",
+            right2      = GetCVar("rightActionBar2") == "1"
+        }
+    end
+    -- Using the result from the check above, decide whether the current state and the desired state matches
+    local function ApplyActionBarState(state)
+        SetActionBarToggles(
+            state.bottomLeft and 1 or 0,
+            state.bottomRight and 1 or 0,
+            state.right1 and 1 or 0,
+            state.right2 and 1 or 0
+        )
+        MultiActionBar_Update();
+    end
+    -- Define a dummy frame specifically for the refresh of the visibility of the bars
+    local bars = CreateFrame("Frame");
+    bars:RegisterEvent("CVAR_UPDATE");
+    bars:SetScript("OnEvent", function()
+        local state = AreActionBarsVisible()
+
+        if  state.bottomLeft  ~= lastState.bottomLeft
+        or state.bottomRight ~= lastState.bottomRight
+        or state.right1      ~= lastState.right1
+        or state.right2      ~= lastState.right2 then
+
+            ApplyActionBarState(state)
+
+            -- copy table safely
+            lastState = {
+                bottomLeft  = state.bottomLeft,
+                bottomRight = state.bottomRight,
+                right1      = state.right1,
+                right2      = state.right2
+            }
+        end
+    end)
 --Shaman custom APIs
     --Magma Totem casting function--
     --function CastMagmaTotem()
@@ -89,15 +133,28 @@
     local attacking;
     local target_change;
     local no_combat;
-    local f = CreateFrame'Frame';
+    local _f = CreateFrame'Frame';
 
     no_combat = PlayerFrame.inCombat;
 
-    f:RegisterEvent'PLAYER_ENTER_COMBAT'
-    f:RegisterEvent'PLAYER_LEAVE_COMBAT'
-    f:SetScript('OnEvent', function()
+    _f:RegisterEvent'PLAYER_ENTER_COMBAT'
+    _f:RegisterEvent'PLAYER_LEAVE_COMBAT'
+    _f:SetScript('OnEvent', function()
         attacking = event == 'PLAYER_ENTER_COMBAT'
         target_change = event == 'PLAYER_TARGET_CHANGED'
+    end)
+    _f:SetScript('OnUpdate', function()
+        function AreActionBarsVisible()
+            local bottomLeft  = GetCVar("bottomLeftActionBar") == "1"
+            local bottomRight = GetCVar("bottomRightActionBar") == "1"
+            local right1      = GetCVar("rightActionBar") == "1"
+            local right2      = GetCVar("rightActionBar2") == "1"
+
+            return bottomLeft, bottomRight, right1, right2
+        end
+
+        SetActionBarToggles(AreActionBarsVisible())
+        MultiActionBar_Update();
     end)
 
     --API for warrior range pull spell
