@@ -73,7 +73,7 @@
     bars:SetScript("OnUpdate", function()
         local state = AreActionBarsVisible()
 
-        if (state.bottomLeft ~= lastState.bottomLeft or state.bottomRight ~= lastState.bottomRight or state.right1 ~= lastState right1 or state.right2 ~= lastState.right2) then
+        if (state.bottomLeft ~= lastState.bottomLeft or state.bottomRight ~= lastState.bottomRight or state.right1 ~= lastState.right1 or state.right2 ~= lastState.right2) then
             ApplyActionBarState(state)
 
             -- copy table safely
