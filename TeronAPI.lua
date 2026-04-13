@@ -31,11 +31,31 @@
     local lastState = {};
     -- Check the current state of the visibility of each bar
     local function AreActionBarsVisible()
+        if (MultiBarBottomLeft:IsShown()) then
+            bottomLeft = 1;
+        else
+            bottomLeft = 0;
+        end
+        if (MultiBarBottomRight:IsShown()) then
+            bottomRight = 1;
+        else
+            bottomRight = 0;
+        end
+        if (MultiBarRight:IsShown()) then
+            right1 = 1;
+        else
+            right1 = 0;
+        end
+        if (MultiBarRight2:IsShown()) then
+            right2 = 1;
+        else
+            right2 = 0;
+        end
         return {
-            bottomLeft  = GetCVar("bottomLeftActionBar") == "1",
-            bottomRight = GetCVar("bottomRightActionBar") == "1",
-            right1      = GetCVar("rightActionBar") == "1",
-            right2      = GetCVar("rightActionBar2") == "1"
+            bottomLeft, 
+            bottomRight,
+            right1,
+            right2  
         }
     end
     -- Using the result from the check above, decide whether the current state and the desired state matches
@@ -50,15 +70,10 @@
     end
     -- Define a dummy frame specifically for the refresh of the visibility of the bars
     local bars = CreateFrame("Frame");
-    bars:RegisterEvent("CVAR_UPDATE");
-    bars:SetScript("OnEvent", function()
+    bars:SetScript("OnUpdate", function()
         local state = AreActionBarsVisible()
 
-        if  state.bottomLeft  ~= lastState.bottomLeft
-        or state.bottomRight ~= lastState.bottomRight
-        or state.right1      ~= lastState.right1
-        or state.right2      ~= lastState.right2 then
-
+        if (state.bottomLeft ~= lastState.bottomLeft or state.bottomRight ~= lastState.bottomRight or state.right1 ~= lastState right1 or state.right2 ~= lastState.right2) then
             ApplyActionBarState(state)
 
             -- copy table safely
