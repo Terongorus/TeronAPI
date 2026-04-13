@@ -38,18 +38,10 @@
     local function AreActionBarButtonsVisible()
         -- Check if the buttons of each bar are shown; if not, show them
         for i = 1, 12 do
-            if not _G[definitions.bottomLeft..i]:IsShown() then
-                _G[definitions.bottomLeft..i]:Show();
-            end
-            if not _G[definitions.bottomRight..i]:IsShown() then
-                _G[definitions.bottomRight..i]:Show();
-            end
-            if not _G[definitions.right1..i]:IsShown() then
-                _G[definitions.right1..i]:Show();
-            end
-            if not _G[definitions.right2..i]:IsShown() then
-                _G[definitions.right2..i]:Show();
-            end
+            ActionButton_ShowGrid(_G[definitions.bottomLeft..i])
+            ActionButton_ShowGrid(_G[definitions.bottomRight..i])
+            ActionButton_ShowGrid(_G[definitions.right1..i])
+            ActionButton_ShowGrid(_G[definitions.right2..i])
         end
     end
     -- Define a dummy frame specifically for the refresh of the visibility of the bars
