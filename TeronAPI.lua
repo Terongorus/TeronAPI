@@ -1,4 +1,10 @@
 --General custom APIs
+    local definitions = {
+        bottomLeft  = "MultiBarBottomLeftButton",
+        bottomRight = "MultiBarBottomRightButton",
+        right1      = "MultiBarRightButton",
+        right2      = "MultiBarLeftButton"
+    }
     --f:SetScript('OnUpdate', function()
         --f:SetScript('OnUpdate', nil)
         --for i = 1, GetNumMacros() do
@@ -30,60 +36,36 @@
     -- Always Show Action Bars
     local lastState = {};
     -- Check the current state of the visibility of each bar
-    local function AreActionBarsVisible()
-        if (MultiBarBottomLeft:IsShown()) then
-            bottomLeft = 1;
-        else
-            bottomLeft = 0;
+    local function AreActionBarButtonsVisible()
+        -- Check if the buttons of each bar are shown; if at least one button is shown, then the bar is considered shown; otherwise, show all buttons of the bar
+        for i = 1, 12 do
+            if _G[definitions.bottomLeft..i]:IsShown() then
+                continue;
+            else
+                _G[definitions.bottomLeft..i]:Show();
+            end
+            if _G[definitions.bottomRight..i]:IsShown() then
+                continue;
+            else
+                _G[definitions.bottomRight..i]:Show();
+            end
+            if _G[definitions.right1..i]:IsShown() then
+                continue;
+            else
+                _G[definitions.right1..i]:Show();
+            end
+            if _G[definitions.right2..i]:IsShown() then
+                continue;
+            else
+                _G[definitions.right2..i]:Show();
+            end
         end
-        if (MultiBarBottomRight:IsShown()) then
-            bottomRight = 1;
-        else
-            bottomRight = 0;
-        end
-        if (MultiBarRight:IsShown()) then
-            right1 = 1;
-        else
-            right1 = 0;
-        end
-        if (MultiBarLeft:IsShown()) then
-            right2 = 1;
-        else
-            right2 = 0;
-        end
-        return {
-            bottomLeft, 
-            bottomRight,
-            right1,
-            right2  
-        }
-    end
-    -- Using the result from the check above, decide whether the current state and the desired state matches
-    local function ApplyActionBarState(state)
-        SetActionBarToggles(
-            state.bottomLeft and 1 or 0,
-            state.bottomRight and 1 or 0,
-            state.right1 and 1 or 0,
-            state.right2 and 1 or 0
-        )
-        MultiActionBar_Update();
     end
     -- Define a dummy frame specifically for the refresh of the visibility of the bars
     local bars = CreateFrame("Frame");
     bars:SetScript("OnUpdate", function()
-        local state = AreActionBarsVisible()
-
-        if (state.bottomLeft ~= lastState.bottomLeft or state.bottomRight ~= lastState.bottomRight or state.right1 ~= lastState.right1 or state.right2 ~= lastState.right2) then
-            ApplyActionBarState(state)
-
-            -- copy table safely
-            lastState = {
-                bottomLeft  = state.bottomLeft,
-                bottomRight = state.bottomRight,
-                right1      = state.right1,
-                right2      = state.right2
-            }
-        end
+        -- call the method to check the visibility of the bars and show them if they are hidden
+        AreActionBarButtonsVisible();
     end)
 --Shaman custom APIs
     --Magma Totem casting function--
