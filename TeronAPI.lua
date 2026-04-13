@@ -48,12 +48,9 @@
     local bars = CreateFrame("Frame");
     -- Events that affect action bar visibility
     bars:RegisterEvent("PLAYER_ENTERING_WORLD")
-    bars:RegisterEvent("PLAYER_ENTER_COMBAT")
-    bars:RegisterEvent("PLAYER_LEAVE_COMBAT")
     bars:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
     bars:RegisterEvent("ACTIONBAR_SHOWGRID")
     bars:RegisterEvent("ACTIONBAR_HIDEGRID")
-    bars:RegisterEvent("CVAR_UPDATE")
     bars:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
     -- event handler
     bars:SetScript("OnEvent", function()
