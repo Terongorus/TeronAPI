@@ -1,7 +1,7 @@
 # TeronAPI
 
 ## NEW FEATURE
-A new feature that always enables the *"Always Show Action Bars"* option for the Options Menu. It is enabled by default and cannot be disabled as of this moment!
+**v1.2.0** -> A new feature that always enables the *"Always Show Action Bars"* option for the Options Menu. It is enabled by default and cannot be disabled as of this moment!
 
 ## Description
 A set of custom API functions created for different classes in Vanilla World of Warcraft (and Turtle WoW), to help reduce the size of macro scripts.
