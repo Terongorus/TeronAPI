@@ -143,19 +143,6 @@
         attacking = event == 'PLAYER_ENTER_COMBAT'
         target_change = event == 'PLAYER_TARGET_CHANGED'
     end)
-    _f:SetScript('OnUpdate', function()
-        function AreActionBarsVisible()
-            local bottomLeft  = GetCVar("bottomLeftActionBar") == "1"
-            local bottomRight = GetCVar("bottomRightActionBar") == "1"
-            local right1      = GetCVar("rightActionBar") == "1"
-            local right2      = GetCVar("rightActionBar2") == "1"
-
-            return bottomLeft, bottomRight, right1, right2
-        end
-
-        SetActionBarToggles(AreActionBarsVisible())
-        MultiActionBar_Update();
-    end)
 
     --API for warrior range pull spell
     function WarriorRangePull()
