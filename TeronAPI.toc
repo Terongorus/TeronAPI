@@ -2,7 +2,7 @@
 ## Title: TeronAPI
 ## Notes: A set of custom APIs and functions for World of Warcraft Vanilla and Turtle WoW, which can be used in macros/scripts/addons.
 ## Author: Teron
-## Version: v1.2.0
+## Version: v1.2.5
 ## SavedVariablesPerAccount: TeronAPI_Config
 
 TeronAPI.lua
