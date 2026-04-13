@@ -34,29 +34,20 @@
         end
     end
     -- Always Show Action Bars
-    local lastState = {};
     -- Check the current state of the visibility of each bar
     local function AreActionBarButtonsVisible()
-        -- Check if the buttons of each bar are shown; if at least one button is shown, then the bar is considered shown; otherwise, show all buttons of the bar
+        -- Check if the buttons of each bar are shown; if not, show them
         for i = 1, 12 do
-            if _G[definitions.bottomLeft..i]:IsShown() then
-                continue;
-            else
+            if not _G[definitions.bottomLeft..i]:IsShown() then
                 _G[definitions.bottomLeft..i]:Show();
             end
-            if _G[definitions.bottomRight..i]:IsShown() then
-                continue;
-            else
+            if not _G[definitions.bottomRight..i]:IsShown() then
                 _G[definitions.bottomRight..i]:Show();
             end
-            if _G[definitions.right1..i]:IsShown() then
-                continue;
-            else
+            if not _G[definitions.right1..i]:IsShown() then
                 _G[definitions.right1..i]:Show();
             end
-            if _G[definitions.right2..i]:IsShown() then
-                continue;
-            else
+            if not _G[definitions.right2..i]:IsShown() then
                 _G[definitions.right2..i]:Show();
             end
         end
