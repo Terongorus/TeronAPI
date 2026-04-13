@@ -46,7 +46,7 @@
         else
             right1 = 0;
         end
-        if (MultiBarRight2:IsShown()) then
+        if (MultiBarLeft:IsShown()) then
             right2 = 1;
         else
             right2 = 0;
