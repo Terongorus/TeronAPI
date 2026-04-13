@@ -54,7 +54,15 @@
     end
     -- Define a dummy frame specifically for the refresh of the visibility of the bars
     local bars = CreateFrame("Frame");
-    bars:SetScript("OnUpdate", function()
+    -- Events that affect action bar visibility
+    bars:RegisterEvent("PLAYER_ENTERING_WORLD")
+    bars:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
+    bars:RegisterEvent("ACTIONBAR_SHOWGRID")
+    bars:RegisterEvent("ACTIONBAR_HIDEGRID")
+    bars:RegisterEvent("CVAR_UPDATE")
+    bars:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
+    -- event handler
+    bars:SetScript("OnEvent", function()
         -- call the method to check the visibility of the bars and show them if they are hidden
         AreActionBarButtonsVisible();
     end)
