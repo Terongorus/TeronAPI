@@ -33,7 +33,7 @@
             end
         end
     end
-    -- Always Show Action Bars
+    -- Always Show Action Bars - fix for the issue of bars/buttons disappearing when the ModernSpellbook addon is used
     -- Check the current state of the visibility of each bar
     local function AreActionBarButtonsVisible()
         -- Check if the buttons of each bar are shown; if not, show them
@@ -54,8 +54,12 @@
     bars:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
     -- event handler
     bars:SetScript("OnEvent", function()
-        -- call the method to check the visibility of the bars and show them if they are hidden
-        AreActionBarButtonsVisible();
+        if (IsAddOnLoaded("ModernSpellBook")) then
+            -- If the ModernSpellbook addon is loaded, call the method
+            AreActionBarButtonsVisible();
+        else
+            return;
+        end
     end)
 --Shaman custom APIs
     --Magma Totem casting function--
