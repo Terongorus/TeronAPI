@@ -61,6 +61,114 @@
             return;
         end
     end)
+
+    -- Priority list of Greater Blessings based on Vanilla base mana costs.
+    -- Greater Blessing of Kings (150 mana) is universally the cheapest.
+    -- We specify Rank 1 for the others to prevent down-ranking the mana pool instantly.
+    local GB_PRIORITY = {
+        "Greater Blessing of Kings", 
+        "Greater Blessing of Might(Rank 1)",     
+        "Greater Blessing of Light(Rank 1)",
+        "Greater Blessing of Wisdom(Rank 1)",
+        "Greater Blessing of Salvation",
+        "Greater Blessing of Sanctuary"
+    }
+
+    function TeronAPI:CastThreatBlessing()
+        local classCounts = {}
+        local classRepresentatives = {}
+        
+        local numRaid = GetNumRaidMembers()
+        local numParty = GetNumPartyMembers()
+        
+        -- Helper function to tally units that are alive and in buff range
+        local function TallyUnit(unit)
+            if UnitExists(unit) and not UnitIsDeadOrGhost(unit) then
+                -- CheckInteractDistance(unit, 4) checks the 28-yard follow distance.
+                -- This acts as a highly reliable proxy to ensure the unit is actually 
+                -- close enough to receive the 30-yard blessing buff.
+                if CheckInteractDistance(unit, 4) or unit == "player" then
+                    local _, enClass = UnitClass(unit)
+                    if enClass then
+                        classCounts[enClass] = (classCounts[enClass] or 0) + 1
+                        classRepresentatives[enClass] = unit
+                    end
+                end
+            end
+        end
+
+        -- 1. Scan the Group and Tally Classes
+        if numRaid > 0 then
+            for i = 1, numRaid do
+                TallyUnit("raid" .. i)
+            end
+        elseif numParty > 0 then
+            TallyUnit("player")
+            for i = 1, numParty do
+                TallyUnit("party" .. i)
+            end
+        else
+            TallyUnit("player") -- Solo fallback
+        end
+        
+        -- 2. Determine the Class with the Most Members in Range
+        local maxCount = 0
+        local targetClass = nil
+        for class, count in pairs(classCounts) do
+            if count > maxCount then
+                maxCount = count
+                targetClass = class
+            end
+        end
+
+        if not targetClass then return end
+
+        -- 3. Scan Spellbook to Validate Known Blessings
+        local knownSpells = {}
+        local spellIndex = 1
+        while true do
+            local spellName, spellRank = GetSpellName(spellIndex, BOOKTYPE_SPELL)
+            if not spellName then break end
+            
+            -- Store exact macro names (e.g., "Greater Blessing of Might(Rank 1)")
+            local fullName = spellName
+            if spellRank and spellRank ~= "" then
+                fullName = spellName .. "(" .. spellRank .. ")"
+            end
+            
+            knownSpells[fullName] = true
+            knownSpells[spellName] = true -- Fallback for unranked spells like Kings
+            spellIndex = spellIndex + 1
+        end
+
+        -- 4. Select the Cheapest Available Blessing
+        local spellToCast = nil
+        for _, blessing in ipairs(GB_PRIORITY) do
+            if knownSpells[blessing] then
+                spellToCast = blessing
+                break
+            end
+        end
+        
+        if not spellToCast then 
+            DEFAULT_CHAT_FRAME:AddMessage("TeronAPI: No suitable Greater Blessing found.")
+            return 
+        end
+
+        -- 5. Cast and Force Target (Without losing current hostile target)
+        CastSpellByName(spellToCast)
+        
+        if SpellIsTargeting() then
+            -- Force the pending spell cursor onto a representative of the target class
+            SpellTargetUnit(classRepresentatives[targetClass])
+            
+            -- Failsafe: If the cursor is STILL targeting (e.g., unit broke line of sight 
+            -- in the last millisecond), cancel the cast so the tank can still use abilities.
+            if SpellIsTargeting() then
+                SpellStopTargeting()
+            end
+        end
+    end
 --Shaman custom APIs
     --Magma Totem casting function--
     --function CastMagmaTotem()
