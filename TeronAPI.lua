@@ -74,7 +74,7 @@
         "Greater Blessing of Sanctuary"
     }
 
-    function TeronAPI:CastThreatBlessing()
+    function CastThreatBlessing()
         local classCounts = {}
         local classRepresentatives = {}
         
