@@ -1,10 +1,4 @@
 --General custom APIs
-    local definitions = {
-        bottomLeft  = "MultiBarBottomLeftButton",
-        bottomRight = "MultiBarBottomRightButton",
-        right1      = "MultiBarRightButton",
-        right2      = "MultiBarLeftButton"
-    }
     --f:SetScript('OnUpdate', function()
         --f:SetScript('OnUpdate', nil)
         --for i = 1, GetNumMacros() do
@@ -33,35 +27,6 @@
             end
         end
     end
-    -- Always Show Action Bars - fix for the issue of bars/buttons disappearing when the ModernSpellbook addon is used
-    -- Check the current state of the visibility of each bar
-    local function AreActionBarButtonsVisible()
-        -- Check if the buttons of each bar are shown; if not, show them
-        for i = 1, 12 do
-            ActionButton_ShowGrid(_G[definitions.bottomLeft..i])
-            ActionButton_ShowGrid(_G[definitions.bottomRight..i])
-            ActionButton_ShowGrid(_G[definitions.right1..i])
-            ActionButton_ShowGrid(_G[definitions.right2..i])
-        end
-    end
-    -- Define a dummy frame specifically for the refresh of the visibility of the bars
-    local bars = CreateFrame("Frame");
-    -- Events that affect action bar visibility
-    bars:RegisterEvent("PLAYER_ENTERING_WORLD")
-    bars:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
-    bars:RegisterEvent("ACTIONBAR_SHOWGRID")
-    bars:RegisterEvent("ACTIONBAR_HIDEGRID")
-    bars:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
-    -- event handler
-    bars:SetScript("OnEvent", function()
-        if (IsAddOnLoaded("ModernSpellBook")) then
-            -- If the ModernSpellbook addon is loaded, call the method
-            AreActionBarButtonsVisible();
-        else
-            return;
-        end
-    end)
-
     -- Priority list of Greater Blessings based on Vanilla base mana costs.
     -- Greater Blessing of Kings (150 mana) is universally the cheapest.
     -- We specify Rank 1 for the others to prevent down-ranking the mana pool instantly.
