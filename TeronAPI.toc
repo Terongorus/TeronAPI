@@ -1,8 +1,8 @@
 ## Interface: 11200
-## Title: TeronAPI
+## Title: Teron's API
 ## Notes: A set of custom APIs and functions for World of Warcraft Vanilla and Turtle WoW, which can be used in macros/scripts/addons.
 ## Author: Teron
-## Version: v1.2.7
+## Version: v1.2.8
 ## SavedVariablesPerAccount: TeronAPI_Config
 ## OptionalDeps: TeronAutoCombat
 
