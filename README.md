@@ -7,7 +7,7 @@ To use the following custom APIs, all your have to do, is to put "/run *name of 
 ## Custom functions
 
   ### Custom Warrior functions:
-  1. **WarriorRangePull()** -> depending on the type of weapon equiped, shoots with the respective ability *(shoot bow, shoot gun, shoot crossbow, throw)*; decreases time to swap abilities on the action bar
+  1. **WarriorRangePull()** -> depending on the type of weapon equiped, shoots with the respective ability *(shoot bow, shoot gun, shoot crossbow, throw)*; decreases time to swap abilities on the action bar. Uses [TeronAutoCombat](https://github.com/Terongorus/TeronAutoCombat)'s toggle-safe attack starter when it's installed (falls back to a plain `AttackTarget()` otherwise).
   2. **WarriorChargeInterceptCast()** -> allows for the usage of both Charge and Intercept with the click of only one button; Charge out of combat and Intercept in combat, respectively
   3. **WarriorInterveneCast()** -> the function works similarly to how the macro for Blessing of Protection (Hand of Protection) works; checks if the target of your target (usually a party or raid member) is alive, a friendly target and if they are in your party, if so, then casts Intervene on the target
   4. **WarriorLimitedHeroicStrikeCast()** -> limits the usage of *(turns off)* Heroic Strike when the user has less than a specific amount of rage *(can be adjusted to your needs in the .lua file)*

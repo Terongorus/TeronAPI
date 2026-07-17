@@ -193,22 +193,10 @@
     --end
 
 --Warrior custom APIs
-    --Global variables for auto attack function
-    local attacking;
-    local target_change;
-    local no_combat;
-    local _f = CreateFrame'Frame';
-
-    no_combat = PlayerFrame.inCombat;
-
-    _f:RegisterEvent'PLAYER_ENTER_COMBAT'
-    _f:RegisterEvent'PLAYER_LEAVE_COMBAT'
-    _f:SetScript('OnEvent', function()
-        attacking = event == 'PLAYER_ENTER_COMBAT'
-        target_change = event == 'PLAYER_TARGET_CHANGED'
-    end)
-
-    --API for warrior range pull spell
+    --API for warrior range pull spell. Auto-attack toggle-safety is delegated to
+    --TeronAutoCombat (falls back to a bare AttackTarget() if that addon isn't loaded).
+    --The ranged branch below is also toggle-guarded automatically once TeronAutoCombat is
+    --loaded, since it hooks CastSpellByName globally for every "Shoot X"/"Throw" name.
     function WarriorRangePull()
         if GetInventoryItemLink("player",18) ~= nil then
             local _,_,i=strfind(GetInventoryItemLink("player",18),"\124Hitem:(%d+)");
@@ -218,30 +206,19 @@
             t.Guns="Gun"
             t.Crossbows="Crossbow"
             t.Thrown="Throw"
-            
-            --version 1.0
-            if CheckInteractDistance("target", 3) and (not attacking or target_change or no_combat) then
-                AttackTarget();
+
+            if CheckInteractDistance("target", 3) then
+                if TeronAutoCombat then
+                    TeronAutoCombat.StartAttack();
+                else
+                    AttackTarget();
+                end
             else
                 CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
             end
         else
             UIErrorsFrame:AddMessage("You don't have a ranged weapon equipped!", 1.0, 0.0, 0.0, 1.0, 2.0);
         end
-        --version 2.0
---        if CheckInteractDistance("target", 3) and not PlayerFrame.inCombat and not UnitAffectingCombat("player") then
---            AttackTarget();
---        else
---            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
---        end
-
-        --version 3.0
---        if CheckInteractDistance("target", 3) then
---            AttackTarget();
---        else
---            CastSpellByName((string.gsub(t[p],"^([^T])","Shoot %1")));
---        end
-        
     end
     --API for warrior Charge (in combat) and Intercept (out of combat)
     function WarriorChargeInterceptCast()
